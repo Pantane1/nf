@@ -13,4 +13,4 @@ This project provides a modern contact form with EmailJS integration, success/er
   - WhatsApp messaging link
 - 🛡️ Basic form validation (required fields, email format check)
 
-![ph.png](ph.png)
+![ph.png](https://github.com/Pantane1/nf/blob/main/public/ph.png)
