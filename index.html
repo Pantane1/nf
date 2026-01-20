@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantane Hub - Contact</title>
+    <!-- Add EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .left-section {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 60px 40px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .contact-item i {
+            margin-right: 15px;
+            font-size: 1.3rem;
+            width: 30px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5ee;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            margin-top: 10px;
+        }
+
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .left-section, .right-section {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Loading animation */
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .whatsapp-button {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <h1>Have a project in mind? Let's build it.</h1>
+            <p class="subtitle">
+                Have an idea, a project, or a collaboration in mind? 
+                Reach out — I'm always open to meaningful conversations and opportunities.
+            </p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>EMAIL ME</strong><br>
+                        pantane254@gmail.com
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <strong>WHATSAPP</strong><br>
+                        +254 740 312 402
+                    </div>
+                </div>
+            </div>
+            
+            <a href="mailto:pantane254@gmail.com" class="contact-button">
+                <i class="fas fa-paper-plane"></i> Send Email Directly
+            </a>
+            
+            <a href="https://wa.me/254740312402?text=Hello%20Pantane%20Hub,%20I%20have%20a%20project%20in%20mind" 
+               target="_blank" class="whatsapp-button">
+                <i class="fab fa-whatsapp"></i> Message on WhatsApp
+            </a>
+        </div>
+        
+        <div class="right-section">
+            <h2>PANTANE HUB</h2>
+            
+            <div id="successMessage" class="success-message">
+                <i class="fas fa-check-circle"></i> 
+                <span id="successText">Message sent successfully! I'll get back to you within 24 hours.</span>
+            </div>
+            
+            <div id="errorMessage" class="error-message">
+                <i class="fas fa-exclamation-circle"></i> 
+                <span id="errorText">There was an error sending your message. Please try again.</span>
+            </div>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" name="from_name" placeholder="John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="from_email" placeholder="john@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Message *</label>
+                    <textarea id="message" name="message" placeholder="Tell me about your project... What kind of project do you have in mind? What's your timeline? What's your budget?" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+            
+            <div class="footer">
+                <p>Powered by Pantane — built different.</p>
+                <div class="footer-links">
+                    <a href="#" onclick="showSupport()">Support</a>
+                    <a href="#" onclick="showPrivacy()">Privacy Policy</a>
+                    <a href="#" onclick="showTerms()">Terms of Use</a>
+                </div>
+                <p style="margin-top: 10px;">© <span id="currentYear"></span> Pantane. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =============================================
+        // ⚠️ REPLACE THESE WITH YOUR ACTUAL CREDENTIALS ⚠️
+        // =============================================
+        
+        // 1. Get your Public Key from EmailJS → Account → API Keys
+        const EMAILJS_PUBLIC_KEY = "6B39GrANe3KTTGYGH"; // Looks like: user_xxxxxxxxxx
+        
+        // 2. Get your Service ID from EmailJS → Email Services
+        const EMAILJS_SERVICE_ID = "service_nrtkgck"; // Looks like: service_xxxxxxxxx
+        
+        // 3. Get your Template ID from EmailJS → Email Templates
+        const EMAILJS_TEMPLATE_ID = "template_b1391e3"; // Looks like: template_xxxxxxxxx
+        
+        // =============================================
+        // DO NOT EDIT BELOW THIS LINE
+        // =============================================
+        
+        // Initialize EmailJS
+        (function() {
+            // Initialize EmailJS with your Public Key
+            emailjs.init(EMAILJS_PUBLIC_KEY);
+            
+            // DOM Elements
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const successText = document.getElementById('successText');
+            const errorText = document.getElementById('errorText');
+            
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Form submission handler
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                const originalBtnContent = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<span class="loader"></span> Sending...';
+                submitBtn.disabled = true;
+                
+                // Hide previous messages
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+                
+                // Get form data
+                const formData = {
+                    from_name: document.getElementById('name').value.trim(),
+                    from_email: document.getElementById('email').value.trim(),
+                    message: document.getElementById('message').value.trim(),
+                    to_email: "pantane254@gmail.com",
+                    date: new Date().toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    }),
+                    page_url: window.location.href
+                };
+                
+                // Validate form
+                if (!formData.from_name || !formData.from_email || !formData.message) {
+                    showError("Please fill in all required fields.");
+                    restoreButton();
+                    return;
+                }
+                
+                if (!isValidEmail(formData.from_email)) {
+                    showError("Please enter a valid email address.");
+                    restoreButton();
+                    return;
+                }
+                
+                // Send email using EmailJS
+                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formData)
+                    .then(function(response) {
+                        console.log('EmailJS Success:', response.status, response.text);
+                        
+                        // Show success message
+                        successText.textContent = `Thank you ${formData.from_name}! Your message has been sent successfully. I'll reply to ${formData.from_email} within 24 hours.`;
+                        successMessage.style.display = 'block';
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Scroll to success message
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        
+                        // Save to localStorage as backup
+                        saveMessageToLocalStorage(formData);
+                        
+                        // Show confetti effect
+                        showConfetti();
+                    })
+                    .catch(function(error) {
+                        console.error('EmailJS Error:', error);
+                        
+                        // Show error message
+                        let errorMsg = "Oops! Something went wrong. ";
+                        
+                        if (error.text) {
+                            errorMsg += `Error: ${error.text}`;
+                        } else {
+                            errorMsg += "Please try again or email me directly at pantane254@gmail.com";
+                        }
+                        
+                        showError(errorMsg);
+                        
+                        // Save failed attempt to localStorage
+                        saveFailedAttempt(formData);
+                    })
+                    .finally(() => {
+                        restoreButton();
+                    });
+                
+                function restoreButton() {
+                    submitBtn.innerHTML = originalBtnContent;
+                    submitBtn.disabled = false;
+                }
+            });
+            
+            // Helper functions
+            function isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            function showError(message) {
+                errorText.textContent = message;
+                errorMessage.style.display = 'block';
+                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            
+            function saveMessageToLocalStorage(data) {
+                try {
+                    const messages = JSON.parse(localStorage.getItem('pantane_contact_messages') || '[]');
+                    messages.push({
+                        ...data,
+                        timestamp: new Date().toISOString(),
+                        status: 'sent'
+                    });
+                    localStorage.setItem('pantane_contact_messages', JSON.stringify(messages.slice(-20))); // Keep last 20
+                } catch (e) {
+                    console.warn('Could not save to localStorage:', e);
+                }
+            }
+            
+            function saveFailedAttempt(data) {
+                try {
+                    const failed = JSON.parse(localStorage.getItem('pantane_failed_messages') || '[]');
+                    failed.push({
+                        ...data,
+                        timestamp: new Date().toISOString(),
+                        status: 'failed'
+                    });
+                    localStorage.setItem('pantane_failed_messages', JSON.stringify(failed.slice(-10))); // Keep last 10
+                } catch (e) {
+                    console.warn('Could not save failed attempt:', e);
+                }
+            }
+            
+            function showConfetti() {
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 150,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: ['#667eea', '#764ba2', '#4CAF50']
+                    });
+                }
+            }
+            
+            // Modal functions
+            function showSupport() {
+                alert("📧 Support: For any assistance, please email pantane254@gmail.com\n📱 WhatsApp: +254 740 312 402\n⏰ Response time: Within 24 hours");
+            }
+            
+            function showPrivacy() {
+                alert("🔒 Privacy Policy:\n\n• We respect your privacy and will never share your information with third parties.\n• Your contact details are only used to respond to your inquiry.\n• Messages are stored securely in our EmailJS account.\n• You can request deletion of your data by emailing pantane254@gmail.com");
+            }
+            
+            function showTerms() {
+                alert("📝 Terms of Use:\n\n• By submitting this form, you agree to receive a response via email.\n• We do not send promotional emails or spam.\n• Please provide accurate contact information.\n• Messages should be professional and respectful.");
+            }
+            
+            // Form validation on the fly
+            const inputs = contactForm.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    validateField(this);
+                });
+            });
+            
+            function validateField(field) {
+                if (field.type === 'email') {
+                    if (field.value && !isValidEmail(field.value)) {
+                        field.style.borderColor = '#f44336';
+                        showFieldError(field, 'Please enter a valid email');
+                    } else if (field.value) {
+                        field.style.borderColor = '#4CAF50';
+                        hideFieldError(field);
+                    } else {
+                        field.style.borderColor = '#e1e5ee';
+                        hideFieldError(field);
+                    }
+                } else {
+                    if (!field.value.trim()) {
+                        field.style.borderColor = '#f44336';
+                        showFieldError(field, 'This field is required');
+                    } else {
+                        field.style.borderColor = '#4CAF50';
+                        hideFieldError(field);
+                    }
+                }
+            }
+            
+            function showFieldError(field, message) {
+                let errorDiv = field.parentElement.querySelector('.field-error');
+                if (!errorDiv) {
+                    errorDiv = document.createElement('div');
+                    errorDiv.className = 'field-error';
+                    errorDiv.style.color = '#f44336';
+                    errorDiv.style.fontSize = '0.85rem';
+                    errorDiv.style.marginTop = '5px';
+                    field.parentElement.appendChild(errorDiv);
+                }
+                errorDiv.textContent = message;
+            }
+            
+            function hideFieldError(field) {
+                const errorDiv = field.parentElement.querySelector('.field-error');
+                if (errorDiv) {
+                    errorDiv.remove();
+                }
+            }
+            
+        })();
+    </script>
+    
+    <!-- Optional: Confetti library for celebration effect -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</body>
+</html>
