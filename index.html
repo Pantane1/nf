@@ -17,167 +17,21 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .container {
-      display: flex;
-      max-width: 1200px;
-      width: 100%;
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    }
-
-    .left-section {
-      flex: 1;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 60px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .left-section h1 {
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
-
-    .subtitle {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      margin-bottom: 40px;
-    }
-
-    .contact-info p {
-      margin: 15px 0;
-      font-size: 1rem;
-    }
-
-    .social-icons {
-      margin-top: 20px;
-    }
-
-    .social-icons a {
-      color: white;
-      margin-right: 15px;
-      font-size: 1.2rem;
-      transition: color 0.3s;
-    }
-
-    .social-icons a:hover {
-      color: #ddd;
-    }
-
-    .right-section {
-      flex: 1;
-      padding: 60px 40px;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #333;
-    }
-
-    .form-group {
-      margin-bottom: 25px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #333;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 15px;
-      border: 2px solid #e1e5ee;
-      border-radius: 10px;
-      font-size: 1rem;
-    }
-
-    textarea {
-      height: 150px;
-      resize: vertical;
-    }
-
-    .submit-btn {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border: none;
-      padding: 16px 40px;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    .success-message,
-    .error-message {
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      display: none;
-      color: white;
-    }
-
-    .success-message {
-      background: #4caf50;
-    }
-
-    .error-message {
-      background: #f44336;
-    }
-
-    .g-recaptcha {
-      margin: 10px 0 20px;
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-
-      .left-section,
-      .right-section {
-        padding: 40px 20px;
-      }
-    }
-  </style>
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <div class="container">
+    <!-- Left Section -->
     <div class="left-section">
       <h1>Get in touch</h1>
       <p class="subtitle">Reach out — I'm always open to meaningful conversations.</p>
 
       <div class="contact-info">
-        <p><strong>🌐Email:</strong><br />pantane254@gmail.com</p>
-        <p><strong>☎️Phone:</strong><br />+254 740 312 402</p>
-        <p><strong>📍Thika, Kenya</strong>
+        <p><strong>🌐 Email:</strong><br />pantane254@gmail.com</p>
+        <p><strong>☎️ Phone:</strong><br />+254 740 312 402</p>
+        <p><strong>📍 Location:</strong><br />Thika, Kenya</p>
 
         <div class="social-icons">
           <a href="https://web.facebook.com/profile.php?id=100095346974516"><i class="fab fa-facebook-f"></i></a>
@@ -189,6 +43,7 @@
       </div>
     </div>
 
+    <!-- Right Section -->
     <div class="right-section">
       <h2>PANTANE HUB</h2>
 
