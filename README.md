@@ -7,7 +7,9 @@ This project provides a modern contact form with EmailJS integration, success/er
 - 📩 **EmailJS integration** for sending messages directly from the form
 - ✅ Success & error messages with animations
 - 🎉 Confetti effect on successful submission
+- 🔒 Google reCAPTCHA v2 for spam protection
 - 📱 Responsive design (works on mobile and desktop)
+- 🎨 Modern, responsive UI with smooth animations
 - 🔗 Quick contact buttons:
   - Direct email (`mailto:`)
   - WhatsApp messaging link
