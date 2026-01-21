@@ -1,130 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantane Hub - Contact</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pantane Hub - Contact</title>
 
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-    <!-- Google reCAPTCHA v2 -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!-- Google reCAPTCHA v2 -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-    <link rel="icon" href="https://github.com/Pantane1/nf/blob/main/public/nf-fav.jpg">
+  <!-- Favicon -->
+  <link rel="icon" href="https://raw.githubusercontent.com/Pantane1/nf/main/public/nf-fav.jpg" />
 
-    <style>
-        /* ==== EXISTING STYLES (UNCHANGED) ==== */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; }
-        .container { display:flex; max-width:1200px; width:100%; background:white; border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.3); }
-        .left-section { flex:1; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); color:white; padding:60px 40px; display:flex; flex-direction:column; justify-content:center; }
-        .right-section { flex:1; padding:60px 40px; }
-        h1 { font-size:2.8rem; margin-bottom:20px; line-height:1.2; }
-        .subtitle { font-size:1.2rem; opacity:0.9; margin-bottom:40px; }
-        .form-group { margin-bottom:25px; }
-        label { display:block; margin-bottom:8px; font-weight:600; color:#333; }
-        input, textarea { width:100%; padding:15px; border:2px solid #e1e5ee; border-radius:10px; font-size:1rem; }
-        textarea { height:150px; resize:vertical; }
-        .submit-btn { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); color:white; border:none; padding:16px 40px; border-radius:50px; font-size:1.1rem; font-weight:bold; cursor:pointer; width:100%; }
-        .success-message, .error-message { padding:15px; border-radius:10px; margin-bottom:20px; display:none; color:white; }
-        .success-message { background:#4CAF50; }
-        .error-message { background:#f44336; }
-        .g-recaptcha { margin: 10px 0 20px; }
-    </style>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1200px;
+      width: 100%;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .left-section {
+      flex: 1;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left-section h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 40px;
+    }
+
+    .contact-info p {
+      margin: 15px 0;
+      font-size: 1rem;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      color: white;
+      margin-right: 15px;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #ddd;
+    }
+
+    .right-section {
+      flex: 1;
+      padding: 60px 40px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #e1e5ee;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .success-message,
+    .error-message {
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: none;
+      color: white;
+    }
+
+    .success-message {
+      background: #4caf50;
+    }
+
+    .error-message {
+      background: #f44336;
+    }
+
+    .g-recaptcha {
+      margin: 10px 0 20px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left-section,
+      .right-section {
+        padding: 40px 20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="container">
+  <div class="container">
     <div class="left-section">
-        <h1>Have a project in mind? Let's build it.</h1>
-        <p class="subtitle">Reach out — I'm always open to meaningful conversations.</p>
+      <h1>Get in touch</h1>
+      <p class="subtitle">Reach out — I'm always open to meaningful conversations.</p>
+
+      <div class="contact-info">
+        <p><strong>Email:</strong><br />pantane254@gmail.com</p>
+        <p><strong>Phone:</strong><br />+254 740 312 402</p>
+        <p><strong>Address:</strong><br />Meru University, Meru County, Kenya</p>
+
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
     </div>
 
     <div class="right-section">
-        <h2>PANTANE HUB</h2>
+      <h2>PANTANE HUB</h2>
 
-        <div id="successMessage" class="success-message"></div>
-        <div id="errorMessage" class="error-message"></div>
+      <div id="successMessage" class="success-message"></div>
+      <div id="errorMessage" class="error-message"></div>
 
-        <form id="contactForm">
+      <form id="contactForm">
+        <div class="form-group">
+          <label>Your Name *</label>
+          <input type="text" id="name" required placeholder="Your full name" />
+        </div>
 
-            <div class="form-group">
-                <label>Your Name *</label>
-                <input type="text" id="name" required>
-            </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" id="email" required placeholder="Your email address" />
+        </div>
 
-            <div class="form-group">
-                <label>Email *</label>
-                <input type="email" id="email" required>
-            </div>
+        <div class="form-group">
+          <label>Message *</label>
+          <textarea id="message" required placeholder="Write something..."></textarea>
+        </div>
 
-            <div class="form-group">
-                <label>Message *</label>
-                <textarea id="message" required></textarea>
-            </div>
+        <div class="form-group">
+          <div class="g-recaptcha" data-sitekey="6LckmFAsAAAAANJDncWE1EksHFzPn93XMzw2poni"></div>
+        </div>
 
-            <!-- reCAPTCHA v2 -->
-            <div class="form-group">
-                <div class="g-recaptcha" data-sitekey="6LckmFAsAAAAANJDncWE1EksHFzPn93XMzw2poni"></div>
-            </div>
-
-            <button type="submit" class="submit-btn" id="submitBtn">
-                <i class="fas fa-paper-plane"></i> Send Message
-            </button>
-        </form>
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
     </div>
-</div>
+  </div>
 
-<script>
-/* ================= EMAILJS CONFIG ================= */
-const EMAILJS_PUBLIC_KEY = "6B39GrANe3KTTGYGH";
-const EMAILJS_SERVICE_ID = "service_nrtkgck";
-const EMAILJS_TEMPLATE_ID = "template_b1391e3";
+  <script>
+    const EMAILJS_PUBLIC_KEY = "6B39GrANe3KTTGYGH";
+    const EMAILJS_SERVICE_ID = "service_nrtkgck";
+    const EMAILJS_TEMPLATE_ID = "template_b1391e3";
 
-emailjs.init(EMAILJS_PUBLIC_KEY);
+    emailjs.init(EMAILJS_PUBLIC_KEY);
 
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    const captcha = grecaptcha.getResponse();
-    if (!captcha) {
+      const captcha = grecaptcha.getResponse();
+      if (!captcha) {
         showError("Please verify that you are not a robot.");
         return;
-    }
+      }
 
-    const params = {
+      const params = {
         from_name: name.value.trim(),
         from_email: email.value.trim(),
         message: message.value.trim(),
-    };
+      };
 
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
         .then(() => {
-            showSuccess("Message sent successfully!");
-            this.reset();
-            grecaptcha.reset();
+          showSuccess("Message sent successfully!");
+          this.reset();
+          grecaptcha.reset();
         })
         .catch(() => {
-            showError("Failed to send message. Try again.");
-            grecaptcha.reset();
+          showError("Failed to send message. Try again.");
+          grecaptcha.reset();
         });
-});
+    });
 
-function showSuccess(msg) {
-    const el = document.getElementById("successMessage");
-    el.textContent = msg;
-    el.style.display = "block";
-}
+    function showSuccess(msg) {
+      const el = document.getElementById("successMessage");
+      el.textContent = msg;
+      el.style.display = "block";
+    }
 
-function showError(msg) {
-    const el = document.getElementById("errorMessage");
-    el.textContent = msg;
-    el.style.display = "block";
-}
-</script>
-
+    function showError(msg) {
+      const el = document.getElementById("errorMessage");
+      el.textContent = msg;
+      el.style.display = "block";
+    }
+  </script>
 </body>
 </html>
