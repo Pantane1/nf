@@ -8,9 +8,6 @@
   <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-  <!-- Google reCAPTCHA v2 -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
@@ -29,34 +26,16 @@
       <p class="subtitle">Reach out — I'm always open to meaningful conversations and collaborations. Let's build something amazing together.</p>
 
       <div class="contact-info">
-        <p>
-          <strong>Email: </strong>
-          pantane254@gmail.com
-        </p>
-        <p>
-          <strong>Phone: </strong>
-          +254 740 312 402
-        </p>
-        <p>
-          <strong>Thika, Kenya</strong>
-        </p>
+        <p><strong>Email: </strong>pantane254@gmail.com</p>
+        <p><strong>Phone: </strong>+254 740 312 402</p>
+        <p><strong>Thika, Kenya</strong></p>
 
         <div class="social-icons">
-          <a href="https://web.facebook.com/profile.php?id=100095346974516" title="Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://x.com/pantane4" title="Twitter">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/martin-wamuhu-757924340/" title="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="https://www.youtube.com/@Pantane" title="YouTube">
-            <i class="fab fa-youtube"></i>
-          </a>
-          <a href="https://www.instagram.com/_pantane_/" title="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
+          <a href="https://web.facebook.com/profile.php?id=100095346974516" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/pantane4" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/martin-wamuhu-757924340/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@Pantane" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/_pantane_/" title="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
     </div>
@@ -82,10 +61,6 @@
         <div class="form-group">
           <label for="message">Your Message *</label>
           <textarea id="message" name="message" required placeholder="Hello, I'd like to discuss..."></textarea>
-        </div>
-
-        <div class="form-group">
-          <div class="g-recaptcha" data-sitekey="6LckmFAsAAAAANJDncWE1EksHFzPn93XMzw2poni"></div>
         </div>
 
         <button type="submit" class="submit-btn" id="submitBtn">
@@ -114,14 +89,6 @@
       document.getElementById("successMessage").style.display = "none";
       document.getElementById("errorMessage").style.display = "none";
 
-      // Validate reCAPTCHA
-      const captchaResponse = grecaptcha.getResponse();
-      if (!captchaResponse) {
-        showError("Please verify that you are not a robot.");
-        resetButton(submitBtn, originalText);
-        return;
-      }
-
       // Get form values
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
@@ -131,7 +98,6 @@
       if (!name || !email || !message) {
         showError("Please fill in all required fields.");
         resetButton(submitBtn, originalText);
-        grecaptcha.reset();
         return;
       }
 
@@ -140,7 +106,6 @@
       if (!emailRegex.test(email)) {
         showError("Please enter a valid email address.");
         resetButton(submitBtn, originalText);
-        grecaptcha.reset();
         return;
       }
 
@@ -159,12 +124,10 @@
           console.log("Email sent successfully:", response);
           showSuccess("Your message has been sent successfully! I'll get back to you soon.");
           document.getElementById("contactForm").reset();
-          grecaptcha.reset();
         })
         .catch(function(error) {
           console.error("Email send failed:", error);
           showError("Failed to send message. Please try again or contact me directly at pantane254@gmail.com");
-          grecaptcha.reset();
         })
         .finally(function() {
           resetButton(submitBtn, originalText);
@@ -177,7 +140,6 @@
       successEl.textContent = message;
       successEl.style.display = "block";
       
-      // Auto-hide success message after 8 seconds
       setTimeout(() => {
         successEl.style.display = "none";
       }, 8000);
@@ -188,7 +150,6 @@
       errorEl.textContent = message;
       errorEl.style.display = "block";
       
-      // Auto-hide error message after 10 seconds
       setTimeout(() => {
         errorEl.style.display = "none";
       }, 10000);
@@ -199,13 +160,11 @@
       button.disabled = false;
     }
 
-    // Add real-time validation
+    // Real-time validation
     const inputs = document.querySelectorAll('#contactForm input, #contactForm textarea');
     inputs.forEach(input => {
       input.addEventListener('input', function() {
         this.style.borderColor = '#e2e8f0';
-        
-        // Hide error message when user starts typing
         if (this.value.trim()) {
           document.getElementById("errorMessage").style.display = "none";
         }
