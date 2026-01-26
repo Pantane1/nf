@@ -7,7 +7,7 @@ This project provides a modern contact form with EmailJS integration, success/er
 - 📩 **EmailJS integration** for sending messages directly from the form
 - ✅ Success & error messages with animations
 - 🎉 Confetti effect on successful submission
-- 🔒 Google reCAPTCHA v2 for spam protection
+- 🔒 Google reCAPTCHA v2 for spam protection **'/due to delays I removed the key😢..it was fine**
 - 📱 Responsive design (works on mobile and desktop)
 - 🎨 Modern, responsive UI with smooth animations
 - 🔗 Quick contact buttons:
@@ -17,7 +17,7 @@ This project provides a modern contact form with EmailJS integration, success/er
 
 
 <p align="center">
-  <a href="#"><img src="https://github.com/Pantane1/nf/blob/main/public/ph.png" alt="">
+  <a href="#"><img src="https://github.com/Pantane1/nf/blob/main/public/reachme.png" alt="">
 </p>
 
 <p align="center">
