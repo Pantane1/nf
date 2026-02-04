@@ -17,7 +17,7 @@ This project provides a modern contact form with EmailJS integration, success/er
 
 
 <p align="center">
-  <a href="#"><img src="https://github.com/Pantane1/nf/blob/main/public/reachme.png" alt="">
+  <a href="#"><img src="https://github.com/Pantane1/nf/blob/main/public/ph.png" alt="ph-logo">
 </p>
 
 <p align="center">
