@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pantane Hub - Contact</title>
-
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <title>PantaneHub - Contact</title>
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -26,7 +23,40 @@
         <img src="https://raw.githubusercontent.com/Pantane1/nf/main/public/51665.jpg" alt="Pantane" class="profile-pic" /> 
         <h1>Get in touch</h1> 
       </div>
-      <p class="subtitle">Reach out — I'm always open to meaningful conversations and collaborations. Let's build something amazing together.</p>
+      
+      <!-- Context / Explanatory Text -->
+      <div class="contact-context">
+        <p>
+          Reach out — let's build something amazing together!
+        </p>
+        <p>
+          At <strong>PantaneHub</strong>, we've upgraded traditional contact forms to be modern, secure, and user‑friendly. Instead of relying on basic email links that only open your device’s mail app, this form delivers your message directly to my inbox — no extra steps, no confusion.
+        </p>
+        <p>
+          Whether you have: 
+        </p>
+        <ul>
+          <li>✔ A project idea</li>
+          <li>✔ A collaboration request</li>
+          <li>✔ Feedback on one of my works</li>
+          <li>✔ Or a business inquiry</li>
+        </ul>
+        <p>
+          Just fill in your details below and hit <strong>Send Message</strong> — your message will land straight in my inbox, ready for a quick response.
+        </p>
+        <p>
+          Here’s what you can expect:
+        </p>
+        <ul>
+          <li>• Your name and contact info are captured clearly</li>
+          <li>• You don’t need to copy/paste email addresses</li>
+          <li>• Clients experience a smooth, professional interface</li>
+          <li>• Works on mobile and desktop equally well</li>
+        </ul>
+        <p>
+          By using this form, you help me understand your needs better, enabling faster replies and fewer misunderstandings.
+        </p>
+      </div>
 
       <div class="contact-info">
         <p><strong>Email: </strong>pantane254@gmail.com</p>
@@ -73,113 +103,8 @@
       </form>
     </div>
   </div>
- 
-  <script>
-    // Initialize EmailJS with your public key
-    (function() {
-      emailjs.init("6B39GrANe3KTTGYGH");
-    })();
 
-    document.getElementById("contactForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      
-      // Show loading state
-      const submitBtn = document.getElementById("submitBtn");
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-      submitBtn.disabled = true;
-
-      // Hide any previous messages
-      document.getElementById("successMessage").style.display = "none";
-      document.getElementById("errorMessage").style.display = "none";
-
-      // Get form values
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const message = document.getElementById("message").value.trim();
-
-      // Basic validation
-      if (!name || !email || !message) {
-        showError("Please fill in all required fields.");
-        resetButton(submitBtn, originalText);
-        return;
-      }
-
-      // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        showError("Please enter a valid email address.");
-        resetButton(submitBtn, originalText);
-        return;
-      }
-
-      // Prepare parameters for EmailJS
-      const templateParams = {
-        from_name: name,
-        from_email: email,
-        message: message,
-        to_email: "pantane254@gmail.com",
-        date: new Date().toLocaleString()
-      };
-
-      // Send email using EmailJS
-      emailjs.send("service_nrtkgck", "template_b1391e3", templateParams)
-        .then(function(response) {
-          console.log("Email sent successfully:", response);
-          showSuccess("Your message has been sent successfully! I'll get back to you soon.");
-          document.getElementById("contactForm").reset();
-        })
-        .catch(function(error) {
-          console.error("Email send failed:", error);
-          showError("Failed to send message. Please try again or contact me directly at pantane254@gmail.com");
-        })
-        .finally(function() {
-          resetButton(submitBtn, originalText);
-        });
-    });
-
-    // Helper functions for showing messages
-    function showSuccess(message) {
-      const successEl = document.getElementById("successMessage");
-      successEl.textContent = message;
-      successEl.style.display = "block";
-      
-      setTimeout(() => {
-        successEl.style.display = "none";
-      }, 8000);
-    }
-
-    function showError(message) {
-      const errorEl = document.getElementById("errorMessage");
-      errorEl.textContent = message;
-      errorEl.style.display = "block";
-      
-      setTimeout(() => {
-        errorEl.style.display = "none";
-      }, 10000);
-    }
-
-    function resetButton(button, originalHTML) {
-      button.innerHTML = originalHTML;
-      button.disabled = false;
-    }
-
-    // Real-time validation
-    const inputs = document.querySelectorAll('#contactForm input, #contactForm textarea');
-    inputs.forEach(input => {
-      input.addEventListener('input', function() {
-        this.style.borderColor = '#e2e8f0';
-        if (this.value.trim()) {
-          document.getElementById("errorMessage").style.display = "none";
-        }
-      });
-      
-      input.addEventListener('blur', function() {
-        if (this.hasAttribute('required') && !this.value.trim()) {
-          this.style.borderColor = '#f56565';
-        }
-      });
-    });
-  </script>
+  <!-- Scripts (optional) -->
+  <script src="script.js"></script>
 </body>
 </html>
