@@ -337,7 +337,52 @@ textarea {
     font-size: 2.2rem;
   }
 }
+/* Contact Context Box Styling */
+.contact-context {
+  background: linear-gradient(135deg, #0a2f1a, #1c4b2c); /* Dark blue-to-green gradient */
+  padding: 25px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  color: #f0fdf4; /* Light text for contrast */
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+/* Hover effect for subtle interactivity */
+.contact-context:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Headings inside the context box */
+.contact-context p:first-of-type {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.contact-context ul {
+  margin-left: 20px;
+  margin-bottom: 15px;
+  list-style: none; /* remove default bullets */
+}
+
+.contact-context ul li::before {
+  content: "✔";
+  margin-right: 8px;
+  color: #34d399; /* Green checkmark */
+  font-weight: bold;
+}
+
+/* Optional: smaller italic note for extra context */
+.contact-context p:last-of-type {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #d1fae5;
+  margin-top: 15px;
+}
 @media (max-width: 576px) {
   .left-section,
   .right-section {
