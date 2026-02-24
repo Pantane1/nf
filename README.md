@@ -1,5 +1,4 @@
-# Pantane Hub – Contact Form
-
+![screenshot](https://github.com/Pantane1/nf/blob/main/public/Screenshot_20260224-105801%20(1).png)
 [![reachme](https://img.shields.io/badge/ReachMe-blue)](https://pantane1.github.io/nf/) section built with HTML, CSS, and vanilla JavaScript very responsive.  
 This project provides a modern contact form with EmailJS integration, success/error handling, and quick links to email or WhatsApp.
 
